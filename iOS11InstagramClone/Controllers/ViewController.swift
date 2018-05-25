@@ -24,11 +24,6 @@ class ViewController: UIViewController {
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func signUp () {
         let user = PFUser()
         var validPass = false
@@ -69,6 +64,7 @@ class ViewController: UIViewController {
                     
                     if success{
                         print("Sucessfully singed up.")
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
                     } else {
                        self.displayAlert(title: "Error signing up", message: error?.localizedDescription ?? "Error")
                     }
@@ -79,6 +75,7 @@ class ViewController: UIViewController {
                     UIApplication.shared.endIgnoringInteractionEvents()    
                     if(user != nil){
                         print("log in successful")
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
                     } else {
                         self.displayAlert(title: "Error logging in", message: error?.localizedDescription ?? "Error, please try again")
                     }
@@ -108,8 +105,6 @@ class ViewController: UIViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
-    
-
 
     @IBAction func signUpOrLogin(_ sender: UIButton) {
         signUp()
@@ -125,6 +120,14 @@ class ViewController: UIViewController {
             signUpModeActive = true
             signUpButton.setTitle("Sign Up", for: [])
             switchLogInModeButton.setTitle("Log In", for: [])
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.navigationController?.navigationBar.isHidden = true
+        if PFUser.current() != nil {
+            performSegue(withIdentifier: "showUserTable", sender: self)
         }
     }
     
