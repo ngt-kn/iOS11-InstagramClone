@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        // Retrieve id/key for parse server
         let clientID = valueForAPIKey(named:"AWS_CLIENT_ID")
         let clientKey = valueForAPIKey(named: "AWS_SECRET")
 
@@ -26,12 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.server = "http://ec2-18-218-191-133.us-east-2.compute.amazonaws.com/parse"
         }
         Parse.initialize(with: configuration)
+        
         return true
     }
     
+    // Func to retrieve parse clientId and Key from plist
     func valueForAPIKey(named keyname:String) -> String {
-        // Credit to the original source for this technique at
-        // http://blog.lazerwalker.com/blog/2014/05/14/handling-private-api-keys-in-open-source-ios-apps
         let filePath = Bundle.main.path(forResource: "ApiKeys", ofType: "plist")
         let plist = NSDictionary(contentsOfFile:filePath!)
         let value = plist?.object(forKey: keyname) as! String
