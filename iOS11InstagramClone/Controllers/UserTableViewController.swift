@@ -15,55 +15,18 @@ class UserTableViewController: UITableViewController {
     var objectIDs = [""]
     var isFollowing = ["" : false]
     
+    var pullToRefresh: UIRefreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let query = PFUser.query()
+        loadTable()
+
+        pullToRefresh.attributedTitle = NSAttributedString(string: "Pull to refresh")
         
-        query?.whereKey("username", notEqualTo: PFUser.current()?.username)
-        query?.findObjectsInBackground(block: { (users, error) in
-            
-            if error != nil {
-                print(error)
-            } else if let users = users {
-                
-                self.usernames.removeAll()
-                self.objectIDs.removeAll()
-                self.isFollowing.removeAll()
-                
-                for object in users {
-                    if let user = object as? PFUser {
-                        if let username = user.username{
-                            if let objectID = user.objectId{
-                                let usernameArray = username.components(separatedBy: "@")
-                                
-                                self.usernames.append(usernameArray[0])
-                                self.objectIDs.append(objectID)
-                                
-                                let query = PFQuery(className: "Following")
-                                
-                                query.whereKey("follower", equalTo: PFUser.current()?.objectId)
-                                query.whereKey("following", equalTo: objectID)
-                                
-                                query.findObjectsInBackground(block: { (objects, error) in
-                                    if let objects = objects {
-                                        if objects.count > 0 {
-                                            self.isFollowing[objectID] = true
-                                        } else {
-                                            self.isFollowing[objectID] = false
-                                        }
-                                        
-                                        self.tableView.reloadData()
-                                        
-                                    }
-                                })
-                            }
-                        }
-                    }
-                }
-                
-            }
-        })
+        pullToRefresh.addTarget(self, action: #selector(UserTableViewController.loadTable), for: UIControlEvents.valueChanged)
+        
+        tableView.addSubview(pullToRefresh)
 
     }
 
@@ -125,12 +88,60 @@ class UserTableViewController: UITableViewController {
                 
             }
         }
-        
-        
-        
-
     }
     
+    @objc func loadTable(){
+        let query = PFUser.query()
+        
+        query?.whereKey("username", notEqualTo: PFUser.current()?.username)
+        query?.findObjectsInBackground(block: { (users, error) in
+            
+            if error != nil {
+                print(error)
+            } else if let users = users {
+                
+                self.usernames.removeAll()
+                self.objectIDs.removeAll()
+                self.isFollowing.removeAll()
+                
+                for object in users {
+                    if let user = object as? PFUser {
+                        if let username = user.username{
+                            if let objectID = user.objectId{
+                                let usernameArray = username.components(separatedBy: "@")
+                                
+                                self.usernames.append(usernameArray[0])
+                                self.objectIDs.append(objectID)
+                                
+                                let query = PFQuery(className: "Following")
+                                
+                                query.whereKey("follower", equalTo: PFUser.current()?.objectId)
+                                query.whereKey("following", equalTo: objectID)
+                                
+                                query.findObjectsInBackground(block: { (objects, error) in
+                                    if let objects = objects {
+                                        if objects.count > 0 {
+                                            self.isFollowing[objectID] = true
+                                        } else {
+                                            self.isFollowing[objectID] = false
+                                        }
+                                        
+                                        if self.usernames.count == self.isFollowing.count{
+                                            
+                                            self.tableView.reloadData()
+                                            
+                                            self.pullToRefresh.endRefreshing()
+                                        }
+                                    }
+                                })
+                            }
+                        }
+                    }
+                }
+                
+            }
+        })
+    }
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         PFUser.logOut()
         performSegue(withIdentifier: "logOutSegue", sender: self)
