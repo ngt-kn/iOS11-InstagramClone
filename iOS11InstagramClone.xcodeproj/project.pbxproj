@@ -15,6 +15,9 @@
 		A63E4C8620B81FF200541BA3 /* iOS11InstagramCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63E4C8520B81FF200541BA3 /* iOS11InstagramCloneTests.swift */; };
 		A63E4C9120B81FF200541BA3 /* iOS11InstagramCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63E4C9020B81FF200541BA3 /* iOS11InstagramCloneUITests.swift */; };
 		A69C363720B8C85600FA2BE3 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69C363620B8C85600FA2BE3 /* PostViewController.swift */; };
+		A69C363920B8D3DE00FA2BE3 /* FeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69C363820B8D3DE00FA2BE3 /* FeedTableViewController.swift */; };
+		A69C363B20B8D51D00FA2BE3 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69C363A20B8D51D00FA2BE3 /* FeedTableViewCell.swift */; };
+		A69C363D20B8D74A00FA2BE3 /* IMG_0749.JPG in Resources */ = {isa = PBXBuildFile; fileRef = A69C363C20B8D74A00FA2BE3 /* IMG_0749.JPG */; };
 		A6AE92D220B82E14005DEA53 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6AE92D120B82E14005DEA53 /* ApiKeys.plist */; };
 		A6AE934820B86460005DEA53 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AE934720B86460005DEA53 /* UserTableViewController.swift */; };
 		DBA8C7E2145BCDB6FA9BA149 /* Pods_iOS11InstagramClone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6402D6A951266FEC98FAA568 /* Pods_iOS11InstagramClone.framework */; };
@@ -55,6 +58,9 @@
 		A63E4C9020B81FF200541BA3 /* iOS11InstagramCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS11InstagramCloneUITests.swift; sourceTree = "<group>"; };
 		A63E4C9220B81FF200541BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A69C363620B8C85600FA2BE3 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		A69C363820B8D3DE00FA2BE3 /* FeedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewController.swift; sourceTree = "<group>"; };
+		A69C363A20B8D51D00FA2BE3 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		A69C363C20B8D74A00FA2BE3 /* IMG_0749.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0749.JPG; sourceTree = "<group>"; };
 		A6AE92D120B82E14005DEA53 /* ApiKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = SOURCE_ROOT; };
 		A6AE934720B86460005DEA53 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +159,9 @@
 				A63E4C7220B81FED00541BA3 /* ViewController.swift */,
 				A6AE934720B86460005DEA53 /* UserTableViewController.swift */,
 				A69C363620B8C85600FA2BE3 /* PostViewController.swift */,
+				A69C363820B8D3DE00FA2BE3 /* FeedTableViewController.swift */,
+				A69C363C20B8D74A00FA2BE3 /* IMG_0749.JPG */,
+				A69C363A20B8D51D00FA2BE3 /* FeedTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -283,6 +292,7 @@
 				A63E4C7B20B81FF100541BA3 /* LaunchScreen.storyboard in Resources */,
 				A6AE92D220B82E14005DEA53 /* ApiKeys.plist in Resources */,
 				A63E4C7820B81FF100541BA3 /* Assets.xcassets in Resources */,
+				A69C363D20B8D74A00FA2BE3 /* IMG_0749.JPG in Resources */,
 				A63E4C7620B81FED00541BA3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,7 +360,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A69C363720B8C85600FA2BE3 /* PostViewController.swift in Sources */,
+				A69C363B20B8D51D00FA2BE3 /* FeedTableViewCell.swift in Sources */,
 				A63E4C7320B81FED00541BA3 /* ViewController.swift in Sources */,
+				A69C363920B8D3DE00FA2BE3 /* FeedTableViewController.swift in Sources */,
 				A6AE934820B86460005DEA53 /* UserTableViewController.swift in Sources */,
 				A63E4C7120B81FED00541BA3 /* AppDelegate.swift in Sources */,
 			);
